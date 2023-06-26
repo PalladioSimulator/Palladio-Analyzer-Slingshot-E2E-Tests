@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spd:SPD xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adjustments="http://palladiosimulator.org/ScalingPolicyDefinition/Adjustments/1.0" xmlns:spd="http://palladiosimulator.org/ScalingPolicyDefinition/1.0" id="_tIMhQPk8Ee2_hb6TDACESQ">
+  <scalingPolicies id="_0YGoEPk9Ee2tSOC8eLdu2Q">
+    <adjustmentType xsi:type="adjustments:AbsoluteAdjustment"/>
+  </scalingPolicies>
+</spd:SPD>
