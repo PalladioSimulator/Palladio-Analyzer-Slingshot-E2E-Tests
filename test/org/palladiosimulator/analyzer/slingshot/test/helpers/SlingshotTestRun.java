@@ -16,6 +16,9 @@ import org.palladiosimulator.analyzer.workflow.jobs.PreparePCMBlackboardPartitio
 import org.palladiosimulator.edp2.impl.RepositoryManager;
 import org.palladiosimulator.edp2.models.Repository.LocalMemoryRepository;
 import org.palladiosimulator.edp2.models.Repository.RepositoryFactory;
+import org.palladiosimulator.monitorrepository.MeasurementSpecification;
+import org.palladiosimulator.monitorrepository.Monitor;
+import org.palladiosimulator.monitorrepository.MonitorRepository;
 
 import de.uka.ipd.sdq.simucomframework.SimuComConfig;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
@@ -63,6 +66,24 @@ public class SlingshotTestRun {
 
 	public SimulationDriver getDriver() {
 		return this.simulationDriver;
+	}
+
+	/**
+	 *
+	 * @param id
+	 * @return
+	 */
+	public MeasurementSpecification getSpec(final String id) {
+		final MonitorRepository repo = Slingshot.getInstance().getInstance(MonitorRepository.class);
+
+		for (final Monitor monitor : repo.getMonitors()) {
+			for (final MeasurementSpecification spec : monitor.getMeasurementSpecifications()) {
+				if (spec.getId().equals(id)) {
+					return spec;
+				}
+			}
+		}
+		throw new IllegalArgumentException(String.format("No MeasurementSpecification for id %s found.", id));
 	}
 
 	/**

@@ -18,5 +18,4 @@ Require-Bundle:
  org.palladiosimulator.spd,
  org.palladiosimulator.edp2.util,
  org.palladiosimulator.monitorrepository,
- org.junit,
  org.junit.jupiter.api
