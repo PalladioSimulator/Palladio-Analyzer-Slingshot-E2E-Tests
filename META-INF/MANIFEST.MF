@@ -18,4 +18,5 @@ Require-Bundle:
  org.palladiosimulator.spd,
  org.palladiosimulator.edp2.util,
  org.palladiosimulator.monitorrepository,
- org.junit.jupiter.api
+ org.junit.jupiter.api,
+ org.assertj;bundle-version="3.20.2"

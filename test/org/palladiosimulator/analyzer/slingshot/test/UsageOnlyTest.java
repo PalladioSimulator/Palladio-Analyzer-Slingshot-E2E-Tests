@@ -2,15 +2,15 @@ package org.palladiosimulator.analyzer.slingshot.test;
 
 
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.palladiosimulator.analyzer.slingshot.test.helpers.SlingshotTestRun;
 import org.palladiosimulator.analyzer.slingshot.test.helpers.EDP2AccessHelper;
+import org.palladiosimulator.analyzer.slingshot.test.helpers.SlingshotTestRun;
 import org.palladiosimulator.analyzer.slingshot.test.helpers.TestModelURIs;
 import org.palladiosimulator.monitorrepository.MeasurementSpecification;
 /**
@@ -25,35 +25,24 @@ import org.palladiosimulator.monitorrepository.MeasurementSpecification;
  */
 public class UsageOnlyTest {
 
-	private EDP2AccessHelper helper;
-	private SlingshotTestRun run;
-
-	@BeforeEach
-	public void setup() {
-		run = new SlingshotTestRun(new TestModelURIs("minimalModelSet/usageModelOnly/"));
+	@BeforeAll
+	static void setup() {
+		final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("minimalModelSet/usageModelOnly/"));
 		run.initAndRun();
-
-		this.helper = new EDP2AccessHelper();
 	}
 
 	@Test
 	@DisplayName("Insert nice name for display :D")
-	public void test_UsageScenarioResponseTime() {
+	void test_UsageScenarioResponseTime() {
 
-		// this is wrong. but where else to place it?
-		final MeasurementSpecification spec = run.getSpec("_JmmO4BDTEe6FXrMRahCZ6g");
+		final EDP2AccessHelper helper = new EDP2AccessHelper();
+		final MeasurementSpecification spec = helper.getSpec("_JmmO4BDTEe6FXrMRahCZ6g");
 
-//		final RawMeasurements raws = helper.getRawMeasurements(spec);
-//		final DataSeries values = helper.getValues(raws);
 
 		final List<Double> actuals = helper.getAsRealNumber(spec);
 
-		// HOW TO properly JUnit 5 ?
+		// assertThat(actuals).isNotEmpty().isEqualTo(List.of(1.0, 1.0, 1.0, 1.0, 1.0));
 
-		assertTrue(true, "reached end");
+		assertThat(actuals).isNotEmpty().allMatch(v -> Math.abs(v - 1.0) < 0.00001);
 	}
-
-
-
-
 }

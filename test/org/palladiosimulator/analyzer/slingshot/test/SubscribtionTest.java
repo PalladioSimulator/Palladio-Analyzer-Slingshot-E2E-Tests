@@ -1,6 +1,10 @@
 package org.palladiosimulator.analyzer.slingshot.test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.palladiosimulator.analyzer.slingshot.core.api.SimulationDriver;
 import org.palladiosimulator.analyzer.slingshot.core.events.SimulationStarted;
@@ -26,6 +30,8 @@ public class SubscribtionTest {
 
 	boolean result = false;
 
+	List<AssertionError> errors = new ArrayList<>();
+
 	@Test
 	public void test_subscriptor() {
 		final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("minimalModelSet/usageModelOnly/"));
@@ -34,6 +40,13 @@ public class SubscribtionTest {
 		final Subscriber<SimulationStarted> handler = Subscriber.builder(SimulationStarted.class)
 				.name("subscriberTestSubcriber").handler(e -> {
 					System.out.println("WERE HERE " + e.getName());
+					try {
+						assertTrue(false, "fail inside subscriptor");
+						// like this we'll get the assertion error in the wrong thread though.
+					} catch (final AssertionError err) {
+						errors.add(err);
+						// like this i can propagate the assertion error to the test case.
+					}
 					this.result = true;
 					return Result.of();
 				}).build();
@@ -43,7 +56,11 @@ public class SubscribtionTest {
 
 		run.initAndRun();
 
+		if (!errors.isEmpty()) {
+			throw errors.get(0);
+			// but to be honest, i think it's a bit odd. there's probably something better?
+		}
+
 		assertTrue(result, "handler success");
-		assertTrue(true, "reached end");
 	}
 }

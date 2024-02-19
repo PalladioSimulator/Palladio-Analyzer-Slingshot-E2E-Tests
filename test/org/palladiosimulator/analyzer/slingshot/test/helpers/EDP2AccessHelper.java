@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.measure.quantity.Quantity;
 
 import org.eclipse.emf.common.util.URI;
+import org.palladiosimulator.analyzer.slingshot.core.Slingshot;
 import org.palladiosimulator.edp2.dao.MeasurementsDao;
 import org.palladiosimulator.edp2.impl.RepositoryManager;
 import org.palladiosimulator.edp2.models.ExperimentData.DataSeries;
@@ -21,6 +22,8 @@ import org.palladiosimulator.metricspec.CaptureType;
 import org.palladiosimulator.metricspec.MetricDescription;
 import org.palladiosimulator.metricspec.constants.MetricDescriptionConstants;
 import org.palladiosimulator.monitorrepository.MeasurementSpecification;
+import org.palladiosimulator.monitorrepository.Monitor;
+import org.palladiosimulator.monitorrepository.MonitorRepository;
 
 /**
  * Helper to access an EDP2 Repository and match the results.
@@ -38,18 +41,19 @@ public class EDP2AccessHelper {
 	 *
 	 * @param repo
 	 */
-	@Deprecated
-	public EDP2AccessHelper(final Repository repo) {
+//	@Deprecated
+//	public EDP2AccessHelper(final Repository repo) {
+//
+//		// only ever 1 because i only run one simulation in tests.
+//		assert (repo.getExperimentGroups().size() == 1);
+//		assert (repo.getExperimentGroups().get(0).getExperimentSettings().size() == 1);
+//		assert (repo.getExperimentGroups().get(0).getExperimentSettings().get(0).getExperimentRuns().size() == 1);
+//
+//		this.repo = repo;
+//		this.run = repo.getExperimentGroups().get(0).getExperimentSettings().get(0).getExperimentRuns().get(0);
+//
+//	}
 
-		// only ever 1 because i only run one simulation in tests.
-		assert (repo.getExperimentGroups().size() == 1);
-		assert (repo.getExperimentGroups().get(0).getExperimentSettings().size() == 1);
-		assert (repo.getExperimentGroups().get(0).getExperimentSettings().get(0).getExperimentRuns().size() == 1);
-
-		this.repo = repo;
-		this.run = repo.getExperimentGroups().get(0).getExperimentSettings().get(0).getExperimentRuns().get(0);
-
-	}
 
 	public EDP2AccessHelper() {
 		final List<Repository> repos = RepositoryManager.getCentralRepository().getAvailableRepositories();
@@ -63,6 +67,24 @@ public class EDP2AccessHelper {
 		this.repo = repos.get(0);
 		this.run = repo.getExperimentGroups().get(0).getExperimentSettings().get(0).getExperimentRuns().get(0);
 
+	}
+
+	/**
+	 *
+	 * @param id
+	 * @return
+	 */
+	public MeasurementSpecification getSpec(final String id) {
+		final MonitorRepository repo = Slingshot.getInstance().getInstance(MonitorRepository.class);
+
+		for (final Monitor monitor : repo.getMonitors()) {
+			for (final MeasurementSpecification spec : monitor.getMeasurementSpecifications()) {
+				if (spec.getId().equals(id)) {
+					return spec;
+				}
+			}
+		}
+		throw new IllegalArgumentException(String.format("No MeasurementSpecification for id %s found.", id));
 	}
 
 	/**
