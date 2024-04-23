@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spd:SPD xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adjustments="http://palladiosimulator.org/ScalingPolicyDefinition/Adjustments/1.0" xmlns:expectations="http://palladiosimulator.org/ScalingPolicyDefinition/Triggers/Expectations/1.0" xmlns:spd="http://palladiosimulator.org/ScalingPolicyDefinition/1.0" xmlns:stimuli="http://palladiosimulator.org/ScalingPolicyDefinition/Triggers/Stimuli/1.0" xmlns:targets="http://palladiosimulator.org/ScalingPolicyDefinition/Targets/1.0" xmlns:triggers="http://palladiosimulator.org/ScalingPolicyDefinition/Triggers/1.0" id="_wxjrYMb5Ee2r2LzXTxtdFg" entityName="onceSPD">
+  <scalingPolicies id="_wxjrYcb5Ee2r2LzXTxtdFg" entityName="onceTwice" active="true" targetGroup="_wxjrYsb5Ee2r2LzXTxtdFg">
+    <adjustmentType xsi:type="adjustments:StepAdjustment" stepValue="3"/>
+    <scalingTrigger xsi:type="triggers:SimpleFireOnValue" id="_y7iPpMb5Ee2r2LzXTxtdFg" relationalOperator="EqualTo">
+      <stimulus xsi:type="stimuli:SimulationTime"/>
+      <expectedValue xsi:type="expectations:ExpectedTime" value="15.0"/>
+    </scalingTrigger>
+  </scalingPolicies>
+  <targetGroups xsi:type="targets:ElasticInfrastructure" id="_wxjrYsb5Ee2r2LzXTxtdFg" entityName="fcfs infrastructure - once">
+    <PCM_ResourceEnvironment href="../My.resourceenvironment#/"/>
+  </targetGroups>
+</spd:SPD>
