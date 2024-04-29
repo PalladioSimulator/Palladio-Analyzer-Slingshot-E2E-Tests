@@ -45,7 +45,7 @@ jobs:
       with:
         repository: 'PalladioSimulator/Palladio-Addons-SPD-Metamodel'
         path: 'Palladio-Addons-SPD-Metamodel'
-        ref: ${{ github.event.inputs.spd_metamodel_branch }}
+        ref: 'fix-for-standalone-building'
 
     - name: Checkout Slingshot
       uses: actions/checkout@v3
@@ -59,21 +59,21 @@ jobs:
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-Monitoring'
         path: 'Palladio-Analyzer-Slingshot-Extension-Monitoring-master'
-        ref: ${{ github.event.inputs.slingshot_extension_monitoring_branch }}
+        ref: 'add_pom_for_e2e_tests'
 
     - name: Checkout Slingshot-Extension-PCM-Core
       uses: actions/checkout@v3
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-PCM-Core'
         path: 'Palladio-Analyzer-Slingshot-Extension-PCM-Core-master'
-        ref: ${{ github.event.inputs.slingshot_extension_pcm_core_branch }}
+        ref: 'add_pom_for_e2e_testing'
 
     - name: Checkout SPD-Interpreter-master
       uses: actions/checkout@v3
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter'
         path: 'Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter-master'
-        ref: ${{ github.event.inputs.slingshot_extension_spd_interpreter_branch }}
+        ref: 'add_pom_for_e2e_tests'
 
     - name: Set up JDK 17
       uses: actions/setup-java@v3.10.0
