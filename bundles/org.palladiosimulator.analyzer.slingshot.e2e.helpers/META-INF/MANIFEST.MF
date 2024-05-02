@@ -14,6 +14,7 @@ Require-Bundle:
  org.palladiosimulator.pcm,
  org.palladiosimulator.pcm.resources;bundle-version="3.6.0",
  org.palladiosimulator.edp2,
+ org.palladiosimulator.recorderframework.edp2;bundle-version="5.1.0",
  de.uka.ipd.sdq.simulation.abstractsimengine;bundle-version="5.1.0",
  de.uka.ipd.sdq.probfunction.math;bundle-version="5.1.0",
  org.palladiosimulator.recorderframework;bundle-version="5.1.0",
