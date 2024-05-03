@@ -1,4 +1,4 @@
-package org.palladiosimulator.analyzer.slingshot.test;
+package org.palladiosimulator.analyzer.slingshot.e2e.test;
 
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,12 +15,12 @@ import org.palladiosimulator.analyzer.slingshot.core.api.SimulationDriver;
 import org.palladiosimulator.analyzer.slingshot.core.events.SimulationStarted;
 import org.palladiosimulator.analyzer.slingshot.eventdriver.entity.Subscriber;
 import org.palladiosimulator.analyzer.slingshot.eventdriver.returntypes.Result;
-import org.palladiosimulator.analyzer.slingshot.test.helpers.SlingshotTestRun;
-import org.palladiosimulator.analyzer.slingshot.test.helpers.TestModelURIs;
+import org.palladiosimulator.analyzer.slingshot.e2e.helpers.SlingshotTestRun;
+import org.palladiosimulator.analyzer.slingshot.e2e.helpers.TestModelURIs;
 import org.palladiosimulator.metricspec.constants.MetricDescriptionConstants;
 import org.palladiosimulator.monitorrepository.MeasurementSpecification;
-import org.palladiosimulator.analyzer.slingshot.test.helpers.EDP2AccessHelper;
-import org.palladiosimulator.analyzer.slingshot.test.helpers.ManualModelCreation;
+import org.palladiosimulator.analyzer.slingshot.e2e.helpers.EDP2AccessHelper;
+import org.palladiosimulator.analyzer.slingshot.e2e.helpers.ManualModelCreation;
 
 /**
  *
@@ -37,7 +37,7 @@ final EDP2AccessHelper edp2AccessHelper = new EDP2AccessHelper();
 	    	    config.put("SIMULATE_LINKING_RESOURCES", 1);
 	    	
 	    	
-	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("minimalModelSet/usageModelOnly/"), config );
+	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("usageModelOnly"), config );
 			run.initAndRun();
 	    	
 	        // Get measurement specification for response time metric tuple
@@ -56,7 +56,7 @@ final EDP2AccessHelper edp2AccessHelper = new EDP2AccessHelper();
 	    	Map<String, Object> config = new HashMap<String, Object>(); 
     	    config.put("SIMULATE_LINKING_RESOURCES", 0);
     	    
-	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("minimalModelSet/usageModelOnly/"), config);
+	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("usageModelOnly"), config);
 			run.initAndRun();
 			
 	        // Get measurement specification for response time metric tuple
