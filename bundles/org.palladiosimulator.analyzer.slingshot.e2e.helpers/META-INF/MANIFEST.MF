@@ -22,4 +22,5 @@ Require-Bundle:
  org.palladiosimulator.edp2.util,
  org.palladiosimulator.monitorrepository,
  org.junit.jupiter.api,
- org.assertj;bundle-version="3.20.2"
+ org.assertj;bundle-version="3.20.2",
+ org.palladiosimulator.analyzer.slingshot.monitor;bundle-version="1.0.0"
