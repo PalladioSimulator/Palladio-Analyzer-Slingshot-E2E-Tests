@@ -4,27 +4,6 @@ on:
   push:
   pull_request:
   workflow_dispatch:
-    inputs:
-      spd_metamodel_branch:
-        description: 'SPD-Metamodel branch'
-        required: false
-        default: 'fix-for-standalone-building'
-      slingshot_branch:
-        description: 'Slingshot branch'
-        required: false
-        default: 'master'
-      slingshot_extension_monitoring_branch:
-        description: 'Slingshot-Extension-Monitoring branch'
-        required: false
-        default: 'add_pom_for_e2e_tests'
-      slingshot_extension_pcm_core_branch:
-        description: 'Slingshot-Extension-PCM-Core branch'
-        required: false
-        default: 'add_pom_for_e2e_testing'
-      slingshot_extension_spd_interpreter_branch:
-        description: 'Slingshot-Extension-SPD-Interpreter branch'
-        required: false
-        default: 'add_pom_for_e2e_tests'
   repository_dispatch:
     types: [build-trigger]
 
@@ -52,7 +31,7 @@ jobs:
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot'
         path: 'Palladio-Analyzer-Slingshot'
-        ref: ${{ github.event.inputs.slingshot_branch }}
+        ref: 'master'
 
     - name: Checkout Slingshot-Extension-Monitoring
       uses: actions/checkout@v3
@@ -66,7 +45,7 @@ jobs:
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-PCM-Core'
         path: 'Palladio-Analyzer-Slingshot-Extension-PCM-Core-master'
-        ref: 'add_pom_for_e2e_testing'
+        ref: ${{ github.event.client_payload.slingshot_extension_pcm_core_branch || 'master' }}
 
     - name: Checkout SPD-Interpreter-master
       uses: actions/checkout@v3
