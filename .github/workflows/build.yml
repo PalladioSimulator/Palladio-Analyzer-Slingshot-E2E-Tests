@@ -37,21 +37,21 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-Monitoring'
-        path: 'Palladio-Analyzer-Slingshot-Extension-Monitoring-master'
+        path: 'Palladio-Analyzer-Slingshot-Extension-Monitoring'
         ref: 'add_pom_for_e2e_tests'
 
     - name: Checkout Slingshot-Extension-PCM-Core
       uses: actions/checkout@v3
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-PCM-Core'
-        path: 'Palladio-Analyzer-Slingshot-Extension-PCM-Core-master'
-        ref: ${{ github.event.client_payload.slingshot_extension_pcm_core_branch || 'master' }}
+        path: 'Palladio-Analyzer-Slingshot-Extension-PCM-Core'
+        ref: ${{ github.event.client_payload.slingshot_extension_pcm_core_branch || 'add_pom_for_e2e_testing' }}
 
     - name: Checkout SPD-Interpreter-master
       uses: actions/checkout@v3
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter'
-        path: 'Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter-master'
+        path: 'Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter'
         ref: 'add_pom_for_e2e_tests'
 
     - name: Set up JDK 17
