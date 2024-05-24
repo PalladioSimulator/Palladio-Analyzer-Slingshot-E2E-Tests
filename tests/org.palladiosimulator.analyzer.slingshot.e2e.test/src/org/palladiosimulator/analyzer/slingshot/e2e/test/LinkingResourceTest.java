@@ -21,17 +21,27 @@ public class LinkingResourceTest {
 
 
 	    
-	   
+	   /**
+		*	Slingshot implementation of the LinkingResource-Test https://palladio-simulator.atlassian.net/browse/SIMULIZAR-104
+		*	Tests whether the network simulation works without middleware marshalling / demarshalling.
+		*/
+
+
+		//Test with simulationparameter simulateLinkingResources enabled
 	    @Test
 	    void testLinkingResourceThroughputSimulation() {
 	    	
-	    	
+			//Create Hashmap to set simulation parameters.
 	    	Map<String, Object> config = new HashMap<String, Object>(); 
+
+			//Set simulateLinkingResources as enabled
 	    	config.put("simulateLinkingResources", 1);
 	    	
-	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("usageModelOnly"), config );
+			//Create and run Slingshotsimulation with an examplemodel and created Hashmap as config
+	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("defaultModel"), config );
 			run.initAndRun();
 	    	
+			//Create EDP2AccesHelper to access simulationresults
 			final EDP2AccessHelper edp2AccessHelper = new EDP2AccessHelper();
 			
 	        // Get measurement specification for response time metric tuple
@@ -44,15 +54,21 @@ public class LinkingResourceTest {
 	        assertTrue(measurementValues.stream().allMatch(value -> value > 184.0 && value < 185.0));
 	    }
 	    
+		//Test with simulationparameter simulateLinkingResources disabled
 	    @Test
 	    void testNoLinkingResourceSimulation() {
 	    	
+			//Create Hashmap to set simulation parameters.
 	    	Map<String, Object> config = new HashMap<String, Object>(); 
-    	    config.put("SIMULATE_LINKING_RESOURCES", 0);
+
+			//Set simulateLinkingResources as disabled
+    	    config.put("simulateLinkingResources", 0);
     	    
-	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("usageModelOnly"), config);
+			//Create and run Slingshotsimulation with an examplemodel and created Hashmap as config
+	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("defaultModel"), config);
 			run.initAndRun();
 			
+			//Create EDP2AccesHelper to access simulationresults
 			final EDP2AccessHelper edp2AccessHelper = new EDP2AccessHelper();
 			
 	        // Get measurement specification for response time metric tuple
