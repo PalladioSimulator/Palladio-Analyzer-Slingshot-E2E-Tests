@@ -12,6 +12,8 @@ import org.palladiosimulator.analyzer.slingshot.e2e.helpers.SlingshotTestRun;
 import org.palladiosimulator.analyzer.slingshot.e2e.helpers.TestModelURIs;
 import org.palladiosimulator.monitorrepository.MeasurementSpecification;
 
+import de.uka.ipd.sdq.simucomframework.SimuComConfig;
+
 public class SetVariableTest {
 	
 	/**
@@ -24,8 +26,10 @@ public class SetVariableTest {
 		Map<String, Object> config = new HashMap<String, Object>(); 
 	   
 	    //Set simulation parameters needed for the SetVariableModel.
-	    config.put("maximumMeasurementCount", 100);
-	    config.put("simTime", -1);
+	    config.put(SimuComConfig.MAXIMUM_MEASUREMENT_COUNT, "100");
+	    
+	    //This breaks the SlingshotTestRun. Needs further testing if even necessary
+	    //config.put(SimuComConfig.SIMULATION_TIME, "-1");
 	    
 	    //Create and run Slingshotsimulation with the SetVariableModel and created Hashmap as config
 	    final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("SetVariableModel"), config);

@@ -12,6 +12,9 @@ import org.junit.jupiter.api.Test;
 import org.palladiosimulator.analyzer.slingshot.e2e.helpers.SlingshotTestRun;
 import org.palladiosimulator.analyzer.slingshot.e2e.helpers.TestModelURIs;
 import org.palladiosimulator.monitorrepository.MeasurementSpecification;
+
+import de.uka.ipd.sdq.simucomframework.SimuComConfig;
+
 import org.palladiosimulator.analyzer.slingshot.e2e.helpers.EDP2AccessHelper;
 
 public class SubSystemTest {
@@ -26,7 +29,7 @@ public class SubSystemTest {
 		Map<String, Object> config = new HashMap<String, Object>(); 
 
 	    //Set simulation parameters needed for the nestedSubSystemModel.
-	    config.put("maximumMeasurementCount", 10);
+	    config.put(SimuComConfig.MAXIMUM_MEASUREMENT_COUNT, "10");
 	    
 	    
 	    //Create and run Slingshotsimulation with the nestedSubSystemModel and created Hashmap as config

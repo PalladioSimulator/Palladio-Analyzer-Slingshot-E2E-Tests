@@ -1,8 +1,7 @@
 package org.palladiosimulator.analyzer.slingshot.e2e.test;
 
 
-
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -43,6 +42,6 @@ public class UsageOnlyTest {
 
 		// assertThat(actuals).isNotEmpty().isEqualTo(List.of(1.0, 1.0, 1.0, 1.0, 1.0));
 
-		assertThat(actuals).isNotEmpty().allMatch(v -> Math.abs(v - 1.0) < 0.00001);
+		assertTrue(actuals.stream().allMatch(v -> Math.abs(v - 1.0) < 0.00001));
 	}
 }

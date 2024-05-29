@@ -12,6 +12,9 @@ import org.junit.jupiter.api.Test;
 import org.palladiosimulator.analyzer.slingshot.e2e.helpers.SlingshotTestRun;
 import org.palladiosimulator.analyzer.slingshot.e2e.helpers.TestModelURIs;
 import org.palladiosimulator.monitorrepository.MeasurementSpecification;
+
+import de.uka.ipd.sdq.simucomframework.SimuComConfig;
+
 import org.palladiosimulator.analyzer.slingshot.e2e.helpers.EDP2AccessHelper;
 
 /**
@@ -35,7 +38,7 @@ public class LinkingResourceTest {
 	    	Map<String, Object> config = new HashMap<String, Object>(); 
 
 			//Set simulateLinkingResources as enabled
-	    	config.put("simulateLinkingResources", 1);
+	    	config.put(SimuComConfig.SIMULATE_THROUGHPUT_OF_LINKING_RESOURCES, true);
 	    	
 			//Create and run Slingshotsimulation with an examplemodel and created Hashmap as config
 	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("defaultModel"), config );
@@ -45,7 +48,7 @@ public class LinkingResourceTest {
 			final EDP2AccessHelper edp2AccessHelper = new EDP2AccessHelper();
 			
 	        // Get measurement specification for response time metric tuple
-	    	MeasurementSpecification responseTimeSpec = edp2AccessHelper.getSpec("_JmmO4BDTEe6FXrMRahCZ6g");
+	    	MeasurementSpecification responseTimeSpec = edp2AccessHelper.getSpec("__fZBELexEeqQOtSQ6pWWhw");
 
 	        // Get measurement values as real numbers
 	        List<Double> measurementValues = edp2AccessHelper.getAsRealNumber(responseTimeSpec);
@@ -62,7 +65,7 @@ public class LinkingResourceTest {
 	    	Map<String, Object> config = new HashMap<String, Object>(); 
 
 			//Set simulateLinkingResources as disabled
-    	    config.put("simulateLinkingResources", 0);
+    	    config.put(SimuComConfig.SIMULATE_THROUGHPUT_OF_LINKING_RESOURCES, false);
     	    
 			//Create and run Slingshotsimulation with an examplemodel and created Hashmap as config
 	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("defaultModel"), config);
@@ -72,7 +75,7 @@ public class LinkingResourceTest {
 			final EDP2AccessHelper edp2AccessHelper = new EDP2AccessHelper();
 			
 	        // Get measurement specification for response time metric tuple
-	        var responseTimeSpec = edp2AccessHelper.getSpec("_JmmO4BDTEe6FXrMRahCZ6g");
+	        var responseTimeSpec = edp2AccessHelper.getSpec("__fZBELexEeqQOtSQ6pWWhw");
 
 	        // Get measurement values as real numbers
 	        List<Double> measurementValues = edp2AccessHelper.getAsRealNumber(responseTimeSpec);

@@ -25,7 +25,8 @@ public class MediaStoreTest {
 		Map<String, Object> config = new HashMap<String, Object>(); 
 		
 		//Set simulation parameters needed for the MediaStoreModel.
-	    config.put("simTime", -1);
+		//This breaks the SlingshotTestRun. Needs further testing if even necessary
+	    //config.put(SimuComConfig.SIMULATION_TIME, "-1");
 	    
 		//Create and run Slingshotsimulation with the MediaStoreModel and created Hashmap as config
 	    final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("MediaStoreModel"), config);
