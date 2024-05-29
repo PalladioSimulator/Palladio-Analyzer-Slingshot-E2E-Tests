@@ -1,7 +1,6 @@
 name: Multi-Repo Build Slingshot
 
 on:
-  push:
   pull_request:
   workflow_dispatch:
   repository_dispatch:
@@ -17,42 +16,42 @@ jobs:
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-E2E-Tests'
         path: 'Palladio-Analyzer-Slingshot-E2E-Tests'
-        ref: 'changes_for_pipeline'
+        ref: 'master'
 
     - name: Checkout SPD-Metamodel
       uses: actions/checkout@v3
       with:
         repository: 'PalladioSimulator/Palladio-Addons-SPD-Metamodel'
         path: 'Palladio-Addons-SPD-Metamodel'
-        ref: 'fix-for-standalone-building'
+        ref: 'master'
 
     - name: Checkout Slingshot
       uses: actions/checkout@v3
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot'
         path: 'Palladio-Analyzer-Slingshot'
-        ref: 'master'
+        ref: '${{ github.event.client_payload.slingshot_branch || 'master' }}'
 
     - name: Checkout Slingshot-Extension-Monitoring
       uses: actions/checkout@v3
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-Monitoring'
         path: 'Palladio-Analyzer-Slingshot-Extension-Monitoring'
-        ref: 'add_pom_for_e2e_tests'
+        ref: '${{ github.event.client_payload.slingshot_extension_monitoring_branch || 'master' }}'
 
     - name: Checkout Slingshot-Extension-PCM-Core
       uses: actions/checkout@v3
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-PCM-Core'
         path: 'Palladio-Analyzer-Slingshot-Extension-PCM-Core'
-        ref: ${{ github.event.client_payload.slingshot_extension_pcm_core_branch || 'add_pom_for_e2e_testing' }}
+        ref: ${{ github.event.client_payload.slingshot_extension_pcm_core_branch || 'master' }}
 
     - name: Checkout SPD-Interpreter-master
       uses: actions/checkout@v3
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter'
         path: 'Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter'
-        ref: 'add_pom_for_e2e_tests'
+        ref: '${{ github.event.client_payload.slingshot_extension_spd_interpreter_branch || 'master' }}'
 
     - name: Set up JDK 17
       uses: actions/setup-java@v3.10.0
