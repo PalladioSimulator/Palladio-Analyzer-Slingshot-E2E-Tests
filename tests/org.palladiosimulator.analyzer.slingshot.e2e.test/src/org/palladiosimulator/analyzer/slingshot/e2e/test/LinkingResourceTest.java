@@ -38,7 +38,7 @@ public class LinkingResourceTest {
 	    	Map<String, Object> config = new HashMap<String, Object>(); 
 
 			//Set simulateLinkingResources as enabled
-	    	config.put(SimuComConfig.SIMULATE_THROUGHPUT_OF_LINKING_RESOURCES, true);
+	    	config.put(SimuComConfig.SIMULATE_LINKING_RESOURCES, true);
 	    	
 			//Create and run Slingshotsimulation with an examplemodel and created Hashmap as config
 	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("defaultModel"), config );
@@ -65,7 +65,7 @@ public class LinkingResourceTest {
 	    	Map<String, Object> config = new HashMap<String, Object>(); 
 
 			//Set simulateLinkingResources as disabled
-    	    config.put(SimuComConfig.SIMULATE_THROUGHPUT_OF_LINKING_RESOURCES, false);
+    	    config.put(SimuComConfig.SIMULATE_LINKING_RESOURCES, false);
     	    
 			//Create and run Slingshotsimulation with an examplemodel and created Hashmap as config
 	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("defaultModel"), config);
