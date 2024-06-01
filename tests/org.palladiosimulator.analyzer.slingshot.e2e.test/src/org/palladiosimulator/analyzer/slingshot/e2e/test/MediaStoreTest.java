@@ -25,8 +25,8 @@ public class MediaStoreTest {
 		Map<String, Object> config = new HashMap<String, Object>(); 
 		
 		//Set simulation parameters needed for the MediaStoreModel.
-		//This breaks the SlingshotTestRun. Needs further testing if even necessary
-	    //config.put(SimuComConfig.SIMULATION_TIME, "-1");
+		//Set Simulationtime to a high value to ensure that the simulation finishes with results
+	    config.put(SimuComConfig.SIMULATION_TIME, "20000");
 	    
 		//Create and run Slingshotsimulation with the MediaStoreModel and created Hashmap as config
 	    final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("MediaStoreModel"), config);
@@ -39,9 +39,12 @@ public class MediaStoreTest {
 	    MeasurementSpecification spec = edp2AccessHelper.getSpec("__fZBELexEeqQOtSQ6pWWhw");
 	    List<Double> measurementValues = edp2AccessHelper.getAsRealNumber(spec);
 	    
+	    //Check wether the simulation returned measurements
+	    assertFalse(measurementValues.isEmpty(),"No Measurementvalues.");
+
 		//The expected range of the values of the datapoints is between 14 and 32.
 		//If every datapoint is in the expected range validate the test.
-	    assertTrue(measurementValues.stream().allMatch(value -> value <= 32 && value >=14 ));
+	    assertTrue(measurementValues.stream().allMatch(value -> value <= 32 && value >=14 ),"Measurements not in expected range.");
 	    
 	}
 	

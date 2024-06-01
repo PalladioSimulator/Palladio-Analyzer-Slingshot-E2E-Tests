@@ -28,8 +28,8 @@ public class SetVariableTest {
 	    //Set simulation parameters needed for the SetVariableModel.
 	    config.put(SimuComConfig.MAXIMUM_MEASUREMENT_COUNT, "100");
 	    
-	    //This breaks the SlingshotTestRun. Needs further testing if even necessary
-	    //config.put(SimuComConfig.SIMULATION_TIME, "-1");
+	    //Set Simulationtime to a high value to ensure that the simulation finishes with results
+	    config.put(SimuComConfig.SIMULATION_TIME, "20000");
 	    
 	    //Create and run Slingshotsimulation with the SetVariableModel and created Hashmap as config
 	    final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("SetVariableModel"), config);
@@ -42,9 +42,12 @@ public class SetVariableTest {
 	    MeasurementSpecification responseTimeSpec = edp2AccessHelper.getSpec("_yFnS8P8qEemyptI4kDp6-Q");
 	    List<Double> measurementValues = edp2AccessHelper.getAsRealNumber(responseTimeSpec);
 	    
+        //Check wether the simulation returned measurements
+	    assertFalse(measurementValues.isEmpty(),"No Measurementvalues.");
+
 	    //The expected value of every datapoint is 50.
 		//If every datapoint equals the expected value we validate the test.
-	    assertTrue(measurementValues.stream().allMatch(value -> value == 50));
+	    assertTrue(measurementValues.stream().allMatch(value -> value == 50),"Measurements not in expected range.");
 	}
 	
 	

@@ -38,7 +38,7 @@ public class LinkingResourceTest {
 	    	Map<String, Object> config = new HashMap<String, Object>(); 
 
 			//Set simulateLinkingResources as enabled
-	    	config.put(SimuComConfig.SIMULATE_LINKING_RESOURCES, true);
+	    	config.put(SimuComConfig.SIMULATE_THROUGHPUT_OF_LINKING_RESOURCES, true);
 	    	
 			//Create and run Slingshotsimulation with an examplemodel and created Hashmap as config
 	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("defaultModel"), config );
@@ -53,8 +53,11 @@ public class LinkingResourceTest {
 	        // Get measurement values as real numbers
 	        List<Double> measurementValues = edp2AccessHelper.getAsRealNumber(responseTimeSpec);
 
+	        //Check wether the simulation returned measurements
+		    assertFalse(measurementValues.isEmpty(),"No Measurementvalues.");
+
 	        // Validate measurement values against expected range
-	        assertTrue(measurementValues.stream().allMatch(value -> value > 184.0 && value < 185.0));
+	        assertTrue(measurementValues.stream().allMatch(value -> value > 184.0 && value < 185.0),"Measurements not in expected range.");
 	    }
 	    
 		//Test with simulationparameter simulateLinkingResources disabled
@@ -65,7 +68,7 @@ public class LinkingResourceTest {
 	    	Map<String, Object> config = new HashMap<String, Object>(); 
 
 			//Set simulateLinkingResources as disabled
-    	    config.put(SimuComConfig.SIMULATE_LINKING_RESOURCES, false);
+    	    config.put(SimuComConfig.SIMULATE_THROUGHPUT_OF_LINKING_RESOURCES, false);
     	    
 			//Create and run Slingshotsimulation with an examplemodel and created Hashmap as config
 	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("defaultModel"), config);
@@ -75,13 +78,16 @@ public class LinkingResourceTest {
 			final EDP2AccessHelper edp2AccessHelper = new EDP2AccessHelper();
 			
 	        // Get measurement specification for response time metric tuple
-	        var responseTimeSpec = edp2AccessHelper.getSpec("__fZBELexEeqQOtSQ6pWWhw");
+	        MeasurementSpecification responseTimeSpec = edp2AccessHelper.getSpec("__fZBELexEeqQOtSQ6pWWhw");
 
 	        // Get measurement values as real numbers
 	        List<Double> measurementValues = edp2AccessHelper.getAsRealNumber(responseTimeSpec);
 
+	        //Check wether the simulation returned measurements
+		    assertFalse(measurementValues.isEmpty(),"No Measurementvalues.");
+
 	        // Validate measurement values against expected range
-	        assertTrue(measurementValues.stream().allMatch(value -> value > 1.0 && value < 2.0));
+	        assertTrue(measurementValues.stream().allMatch(value -> value > 1.0 && value < 2.0),"Measurements not in expected range.");
 	    }
 	
 

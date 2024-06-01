@@ -43,6 +43,9 @@ public class SubSystemTest {
 	    MeasurementSpecification responseTimeSpec = edp2AccessHelper.getSpec("__fZBELexEeqQOtSQ6pWWhw");
 	    List<Double> measurementValues = edp2AccessHelper.getAsRealNumber(responseTimeSpec);
 	    
+        //Check wether the simulation returned measurements
+	    assertFalse(measurementValues.isEmpty(),"No Measurementvalues.");
+
 	    //Create a boolean to keep track if any of the datapoints lie outside the expected range
 	    boolean accept = true;
 
@@ -63,7 +66,7 @@ public class SubSystemTest {
 	    
 		//If the value of accept remained true until here we can confirm that all datapoints are in the expected range
 		//so we can validate the test.
-	    assertTrue(accept);
+	    assertTrue(accept,"Measurements not in expected range.");
 	}
 	
 	

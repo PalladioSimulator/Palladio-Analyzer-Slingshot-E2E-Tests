@@ -29,8 +29,8 @@ public class ForkExampleModelTest {
 		//Set simulation parameters needed for the Fork_3.1Model.
 	    config.put(SimuComConfig.MAXIMUM_MEASUREMENT_COUNT, "100");
 	    
-	    //This breaks the SlingshotTestRun. Needs further testing if even necessary
-	    //config.put(SimuComConfig.SIMULATION_TIME, "-1");
+	    //Set Simulationtime to a high value to ensure that the simulation finishes with results
+	    config.put(SimuComConfig.SIMULATION_TIME, "20000");
 
 		//Create and run Slingshotsimulation with the Fork_3.1Model and created Hashmap as config	.    
 	    final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("Fork_3.1Model"), config);
@@ -43,9 +43,12 @@ public class ForkExampleModelTest {
 	    MeasurementSpecification responseTimeSpec = edp2AccessHelper.getSpec("_8rfecHtQEd6J8YwisObTKw");
 	    List<Double> measurementValues = edp2AccessHelper.getAsRealNumber(responseTimeSpec);
 	    
+        //Check wether the simulation returned measurements
+	    assertFalse(measurementValues.isEmpty(),"No Measurementvalues.");
+
 		//The expected result is that every datapoint is either 1.2 or 1.0.
 	    //Check if every datapoint is one of the expected values and if so validate the test.
-	    assertTrue(measurementValues.stream().allMatch(value -> value == 1.2 || value == 1.0));
+	    assertTrue(measurementValues.stream().allMatch(value -> value == 1.2 || value == 1.0),"Measurements not in expected range.");
 	}
 	
 }
