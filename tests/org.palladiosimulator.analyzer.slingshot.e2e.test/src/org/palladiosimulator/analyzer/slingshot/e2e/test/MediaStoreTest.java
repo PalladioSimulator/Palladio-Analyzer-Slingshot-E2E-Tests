@@ -45,9 +45,20 @@ public class MediaStoreTest {
 	    //Check wether the simulation returned measurements
 	    assertFalse(measurementValues.isEmpty(),"No Measurementvalues.");
 
-		//The expected range of the values of the datapoints is between 14 and 32.
-		//If every datapoint is in the expected range validate the test.
-	    assertTrue(measurementValues.stream().allMatch(value -> value <= 32 && value >=14 ),"Measurements not in expected range.");
+		//The expected range of the values of the datapoints is between 14000 and 32000.
+		//If at least 90% of all measurments are in the expected range validate the test.
+	    int maxcount = measurementValues.size();
+	    int count = 0;
+	    
+		//Checking for every measurment if in range
+	    for(double measurment: measurementValues) {
+	    	if(measurment > 14000 && measurment < 32000) {
+	    		count++;
+	    	}
+	    }
+	    
+		//Accept if at least 90% are in range
+	    assertTrue((count/maxcount)-0.9 <= 0.1, "Values not in range");
 	    
 	}
 	

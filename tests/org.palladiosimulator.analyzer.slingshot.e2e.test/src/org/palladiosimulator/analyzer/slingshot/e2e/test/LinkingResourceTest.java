@@ -40,16 +40,20 @@ public class LinkingResourceTest {
 
 			//Set simulateLinkingResources as enabled
 	    	config.put(SimuComConfig.SIMULATE_THROUGHPUT_OF_LINKING_RESOURCES, true);
-	    	
+			//Set maximum measurments the simulation will take
+	    	config.put(SimuComConfig.MAXIMUM_MEASUREMENT_COUNT, "10000");
+			//Set maximum time simulation will run
+	    	config.put(SimuComConfig.SIMULATION_TIME, "20000");
+
 			//Create and run Slingshotsimulation with an examplemodel and created Hashmap as config
-	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("defaultModel"), config );
+	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("LinkingResourceModel"), config );
 			run.initAndRun();
 	    	
 			//Create EDP2AccesHelper to access simulationresults
 			final EDP2AccessHelper edp2AccessHelper = new EDP2AccessHelper();
 			
 	        // Get measurement specification for response time metric tuple
-	    	MeasurementSpecification responseTimeSpec = edp2AccessHelper.getSpec("__fZBELexEeqQOtSQ6pWWhw");
+	    	MeasurementSpecification responseTimeSpec = edp2AccessHelper.getSpec("_kpMM87esEeqCx9D3JGHCDw");
 
 	        // Get measurement values as real numbers
 	        List<Double> measurementValues = edp2AccessHelper.getAsRealNumber(responseTimeSpec);
@@ -70,16 +74,20 @@ public class LinkingResourceTest {
 
 			//Set simulateLinkingResources as disabled
     	    config.put(SimuComConfig.SIMULATE_THROUGHPUT_OF_LINKING_RESOURCES, false);
-    	    
+    	    //Set maximum measurments the simulation will take
+	    	config.put(SimuComConfig.MAXIMUM_MEASUREMENT_COUNT, "10000");
+			//Set maximum time simulation will run
+	    	config.put(SimuComConfig.SIMULATION_TIME, "20000");
+
 			//Create and run Slingshotsimulation with an examplemodel and created Hashmap as config
-	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("defaultModel"), config);
+	    	final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("LinkingResourceModel"), config);
 			run.initAndRun();
 			
 			//Create EDP2AccesHelper to access simulationresults
 			final EDP2AccessHelper edp2AccessHelper = new EDP2AccessHelper();
 			
 	        // Get measurement specification for response time metric tuple
-	        MeasurementSpecification responseTimeSpec = edp2AccessHelper.getSpec("__fZBELexEeqQOtSQ6pWWhw");
+	        MeasurementSpecification responseTimeSpec = edp2AccessHelper.getSpec("_kpMM87esEeqCx9D3JGHCDw");
 
 	        // Get measurement values as real numbers
 	        List<Double> measurementValues = edp2AccessHelper.getAsRealNumber(responseTimeSpec);

@@ -30,8 +30,10 @@ public class SubSystemTest {
 		Map<String, Object> config = new HashMap<String, Object>(); 
 
 	    //Set simulation parameters needed for the nestedSubSystemModel.
-	    config.put(SimuComConfig.MAXIMUM_MEASUREMENT_COUNT, "10");
+	    config.put(SimuComConfig.MAXIMUM_MEASUREMENT_COUNT, "100");
 	    
+		//Set maximum simulation time
+		config.put(SimuComConfig.SIMULATION_TIME, "150000");
 	    
 	    //Create and run Slingshotsimulation with the nestedSubSystemModel and created Hashmap as config
 	    final SlingshotTestRun run = new SlingshotTestRun(new TestModelURIs("nestedSubSystemModel"), config);
