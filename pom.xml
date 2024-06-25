@@ -7,7 +7,7 @@
   </parent>
   
   <groupId>org.palladiosimulator.analyzer.slingshot</groupId>
-  <artifactId>slingshot_e2e</artifactId>
+  <artifactId>default-extensions</artifactId>
   <version>0.0.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   
@@ -19,9 +19,12 @@
   <modules>
 	<module>bundles</module>
   	<module>releng</module>
-	<module>../Palladio-Analyzer-Slingshot-Extension-Monitoring</module>
-	<module>../Palladio-Analyzer-Slingshot-Extension-PCM-Core</module>
-	<module>../Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter</module>
+	<!-- extensions part of default -->
+	<module>Palladio-Analyzer-Slingshot-Extension-Monitoring</module>
+	<module>Palladio-Analyzer-Slingshot-Extension-PCM-Core</module>
+	<module>Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter</module>
+	
+	<!-- e2e tests of the extensions-->
 	<module>tests</module>
   </modules>
 </project>
