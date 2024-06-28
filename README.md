@@ -10,8 +10,8 @@ i.e., they are not models that can also be used outside the scope of Slingshot, 
 In order for the default extensions to run successfully the dependent projects have to be fetched and installed first:
 
 - Palladio, 5.2
-- SPD, 1.0.0
-- Slingshot Core, 1.0.0
+- SPD, TBA
+- Slingshot Core, TBA
 
 In case you are using maven then the above dependencies have to be installed in your local maven repository first.
 
