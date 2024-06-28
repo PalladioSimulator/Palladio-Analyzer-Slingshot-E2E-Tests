@@ -1,0 +1,9 @@
+[submodule "Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter"]
+	path = Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter
+	url = https://github.com/PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter
+[submodule "Palladio-Analyzer-Slingshot-Extension-Monitoring"]
+	path = Palladio-Analyzer-Slingshot-Extension-Monitoring
+	url = https://github.com/PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-Monitoring
+[submodule "Palladio-Analyzer-Slingshot-Extension-PCM-Core"]
+	path = Palladio-Analyzer-Slingshot-Extension-PCM-Core
+	url = https://github.com/PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-PCM-Core
