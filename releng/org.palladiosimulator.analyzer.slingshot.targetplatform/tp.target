@@ -245,8 +245,6 @@
 		<unit id="org.junit.source" version="4.13.2.v20211018-1956"/>
 		<unit id="org.junit.vintage.engine" version="5.8.1.v20211018-1956"/>
 		<unit id="org.junit.vintage.engine.source" version="5.8.1.v20211018-1956"/>
-		<unit id="org.assertj" version="3.20.2.v20210706-1104"/>
-		<unit id="org.assertj.source" version="3.20.2.v20210706-1104"/>
 	</location>
 </locations>
 </target>
