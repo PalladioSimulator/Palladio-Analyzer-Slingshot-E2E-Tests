@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout E2E (self)
+    - name: Checkout Default Extensions (self)
       uses: actions/checkout@v3
       with:
-        repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-E2E-Tests'
-        path: 'Palladio-Analyzer-Slingshot-E2E-Tests'
+        repository: 'Palladio-Analyzer-Slingshot-Default-Extensions'
+        path: 'Palladio-Analyzer-Slingshot-Default-Extensions'
         ref: 'master'
 
     - name: Checkout SPD-Metamodel
@@ -67,6 +67,6 @@ jobs:
       run: mvn -B clean install
       working-directory: ./Palladio-Analyzer-Slingshot
 
-    - name: Build E2E
+    - name: Build Default
       run: mvn -B clean install
-      working-directory: ./Palladio-Analyzer-Slingshot-E2E-Tests
+      working-directory: ./Palladio-Analyzer-Slingshot-Default-Extensions
