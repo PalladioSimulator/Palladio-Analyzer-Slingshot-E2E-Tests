@@ -19,8 +19,6 @@
   <modules>
 	<module>bundles</module>
   	<module>releng</module>
-	
-	<!-- e2e tests of the extensions-->
 	<module>tests</module>
   </modules>
 </project>

@@ -56,18 +56,30 @@ public class EDP2AccessHelper {
 
 
 	public EDP2AccessHelper() {
-		final List<Repository> repos = RepositoryManager.getCentralRepository().getAvailableRepositories();
-		assert (repos.size() == 1);
+        final List<Repository> repos = RepositoryManager.getCentralRepository().getAvailableRepositories();
 
-		assert (repos.get(0).getExperimentGroups().size() == 1);
-		assert (repos.get(0).getExperimentGroups().get(0).getExperimentSettings().size() == 1);
-		assert (repos.get(0).getExperimentGroups().get(0).getExperimentSettings().get(0).getExperimentRuns()
-				.size() == 1);
+        if (repos.size() > 1) {
+            System.out.println(
+                    "Wrong Number of Repositories in EDP2 RepositoryManager. Default to last one.");
+        }
 
-		this.repo = repos.get(0);
-		this.run = repo.getExperimentGroups().get(0).getExperimentSettings().get(0).getExperimentRuns().get(0);
+        if (repos.size() < 1) {
+            throw new IllegalStateException(
+                    "No Repositories in EDP2 RepositoryManager. Check that Simulation has already finsihed Execution.");
+        }
 
-	}
+        assert (repos.size() == 1);
+
+        final int index = repos.size() - 1;
+
+        assert (repos.get(index).getExperimentGroups().size() == 1);
+        assert (repos.get(index).getExperimentGroups().get(0).getExperimentSettings().size() == 1);
+        assert (repos.get(index).getExperimentGroups().get(0).getExperimentSettings().get(0).getExperimentRuns()
+                .size() == 1);
+
+        this.repo = repos.get(repos.size() - 1);
+        this.run = repo.getExperimentGroups().get(0).getExperimentSettings().get(0).getExperimentRuns().get(0);
+    }
 
 	/**
 	 *
