@@ -19,9 +19,6 @@
   <modules>
 	<module>bundles</module>
   	<module>releng</module>
-	<module>../Palladio-Analyzer-Slingshot-Extension-Monitoring</module>
-	<module>../Palladio-Analyzer-Slingshot-Extension-PCM-Core</module>
-	<module>../Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter</module>
 	<module>tests</module>
   </modules>
 </project>
