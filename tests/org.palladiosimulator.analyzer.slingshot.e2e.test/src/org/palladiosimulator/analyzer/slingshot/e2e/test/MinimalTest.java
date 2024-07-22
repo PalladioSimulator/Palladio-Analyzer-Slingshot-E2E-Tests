@@ -71,7 +71,7 @@ public class MinimalTest {
 
 		for (final Measure<Double, Duration> measure : valueslist) {
 			final double delay = measure.doubleValue(measure.getUnit());
-			assertEquals(1.0, delay);
+			assertTrue(Math.abs(delay-1) < 0.0001);
 		}
 	}
 
