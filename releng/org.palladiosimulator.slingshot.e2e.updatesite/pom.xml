@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-		<groupId>org.palladiosimulator.analyzer.slingshot</groupId>
+		<groupId>org.palladiosimulator.analyzer.slingshot.e2e</groupId>
 		<artifactId>releng</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
