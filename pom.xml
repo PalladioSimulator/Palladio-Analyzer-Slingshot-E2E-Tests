@@ -3,11 +3,11 @@
   <parent>
     <groupId>org.palladiosimulator</groupId>
     <artifactId>eclipse-parent-updatesite</artifactId>
-    <version>0.8.1</version>
+    <version>0.8.2</version>
   </parent>
   
-  <groupId>org.palladiosimulator.analyzer.slingshot</groupId>
-  <artifactId>default-extensions</artifactId>
+  <groupId>org.palladiosimulator.analyzer.slingshot.e2e</groupId>
+  <artifactId>parent</artifactId>
   <version>0.0.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   
@@ -19,12 +19,8 @@
   <modules>
 	<module>bundles</module>
   	<module>releng</module>
-	<!-- extensions part of default -->
-	<module>Palladio-Analyzer-Slingshot-Extension-Monitoring</module>
-	<module>Palladio-Analyzer-Slingshot-Extension-PCM-Core</module>
-	<module>Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter</module>
-	
-	<!-- e2e tests of the extensions-->
 	<module>tests</module>
   </modules>
 </project>
+
+
