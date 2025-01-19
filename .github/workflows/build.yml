@@ -14,8 +14,8 @@ jobs:
     - name: Checkout Default Extensions (self)
       uses: actions/checkout@v3
       with:
-        repository: 'Palladio-Analyzer-Slingshot-Default-Extensions'
-        path: 'Palladio-Analyzer-Slingshot-Default-Extensions'
+        repository: 'Palladio-Analyzer-Slingshot-E2E-Tests'
+        path: 'Palladio-Analyzer-Slingshot-E2E-Tests'
         ref: 'master'
 
     - name: Checkout SPD-Metamodel
@@ -69,4 +69,4 @@ jobs:
 
     - name: Build Default
       run: mvn -B clean install
-      working-directory: ./Palladio-Analyzer-Slingshot-Default-Extensions
+      working-directory: ./Palladio-Analyzer-Slingshot-E2E-Tests
