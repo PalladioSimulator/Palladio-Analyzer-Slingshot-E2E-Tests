@@ -30,14 +30,14 @@ jobs:
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot'
         path: 'Palladio-Analyzer-Slingshot'
-        ref: '${{ github.event.client_payload.slingshot_branch || 'master' }}'
+        ref: ${{ github.event.client_payload.slingshot_branch || 'master' }}
 
     - name: Checkout Slingshot-Extension-Monitoring
       uses: actions/checkout@v3
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-Monitoring'
         path: 'Palladio-Analyzer-Slingshot-Extension-Monitoring'
-        ref: '${{ github.event.client_payload.slingshot_extension_monitoring_branch || 'master' }}'
+        ref: ${{ github.event.client_payload.slingshot_extension_monitoring_branch || 'master' }}
 
     - name: Checkout Slingshot-Extension-PCM-Core
       uses: actions/checkout@v3
@@ -51,7 +51,7 @@ jobs:
       with:
         repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter'
         path: 'Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter'
-        ref: '${{ github.event.client_payload.slingshot_extension_spd_interpreter_branch || 'master' }}'
+        ref: ${{ github.event.client_payload.slingshot_extension_spd_interpreter_branch || 'master' }}
 
     - name: Set up JDK 17
       uses: actions/setup-java@v3.10.0
