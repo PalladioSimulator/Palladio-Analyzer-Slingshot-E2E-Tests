@@ -11,4 +11,18 @@
   <modules>
   	<module>org.palladiosimulator.analyzer.slingshot.e2e.test</module>
   </modules>
+
+ <build>
+    <plugins>
+        <plugin>
+            <groupId>org.eclipse.tycho</groupId>
+            <artifactId>tycho-surefire-plugin</artifactId>
+            <configuration>
+        	<!-- You can reference the file from your test resources directory -->
+        	<argLine>-Dlog4j.configuration=file:${project.basedir}/resources/log4j.properties</argLine>
+     		</configuration>
+        </plugin>
+    </plugins>
+</build>
+
 </project>
