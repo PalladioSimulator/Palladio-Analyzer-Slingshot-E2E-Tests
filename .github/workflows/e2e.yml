@@ -1,0 +1,72 @@
+name: Multi-Repo Build Slingshot
+
+on:
+  pull_request:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [build-trigger]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Default Extensions (self)
+      uses: actions/checkout@v3
+      with:
+        repository: 'Palladio-Analyzer-Slingshot-Default-Extensions'
+        path: 'Palladio-Analyzer-Slingshot-Default-Extensions'
+        ref: 'master'
+
+    - name: Checkout SPD-Metamodel
+      uses: actions/checkout@v3
+      with:
+        repository: 'PalladioSimulator/Palladio-Addons-SPD-Metamodel'
+        path: 'Palladio-Addons-SPD-Metamodel'
+        ref: 'master'
+
+    - name: Checkout Slingshot
+      uses: actions/checkout@v3
+      with:
+        repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot'
+        path: 'Palladio-Analyzer-Slingshot'
+        ref: '${{ github.event.client_payload.slingshot_branch || 'master' }}'
+
+    - name: Checkout Slingshot-Extension-Monitoring
+      uses: actions/checkout@v3
+      with:
+        repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-Monitoring'
+        path: 'Palladio-Analyzer-Slingshot-Extension-Monitoring'
+        ref: '${{ github.event.client_payload.slingshot_extension_monitoring_branch || 'master' }}'
+
+    - name: Checkout Slingshot-Extension-PCM-Core
+      uses: actions/checkout@v3
+      with:
+        repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-PCM-Core'
+        path: 'Palladio-Analyzer-Slingshot-Extension-PCM-Core'
+        ref: ${{ github.event.client_payload.slingshot_extension_pcm_core_branch || 'master' }}
+
+    - name: Checkout SPD-Interpreter-master
+      uses: actions/checkout@v3
+      with:
+        repository: 'PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter'
+        path: 'Palladio-Analyzer-Slingshot-Extension-SPD-Interpreter'
+        ref: '${{ github.event.client_payload.slingshot_extension_spd_interpreter_branch || 'master' }}'
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3.10.0
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Build SPD-Metamodel
+      run: mvn -B clean install
+      working-directory: ./Palladio-Addons-SPD-Metamodel
+    
+    - name: Build Slingshot
+      run: mvn -B clean install
+      working-directory: ./Palladio-Analyzer-Slingshot
+
+    - name: Build Default
+      run: mvn -B clean install
+      working-directory: ./Palladio-Analyzer-Slingshot-Default-Extensions
