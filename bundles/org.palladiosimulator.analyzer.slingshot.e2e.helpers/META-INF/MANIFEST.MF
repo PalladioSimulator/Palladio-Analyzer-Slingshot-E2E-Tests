@@ -4,7 +4,7 @@ Bundle-Name: E2E Test Helpers
 Bundle-SymbolicName: org.palladiosimulator.analyzer.slingshot.e2e.helpers
 Bundle-Version: 1.0.0.qualifier
 Automatic-Module-Name: org.palladiosimulator.analyzer.slingshot.e2e.helpers
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Export-Package: org.palladiosimulator.analyzer.slingshot.e2e.helpers
 Require-Bundle: de.uka.ipd.sdq.simucomframework,
  org.palladiosimulator.analyzer.slingshot.core,
