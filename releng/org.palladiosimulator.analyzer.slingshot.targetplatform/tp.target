@@ -7,7 +7,6 @@
 		<unit id="LIMBO_DLIM.feature.group" version="0.16.1.201606230914"/>
 		<unit id="ca.umontreal.iro.ssj.feature.feature.group" version="3.3.1"/>
 		<unit id="ca.umontreal.iro.ssj.feature.source.feature.group" version="3.3.1"/>
-		<unit id="com.google.dagger.feature.feature.group" version="2.31.0"/>
 		<unit id="de.mdelab.sdm.interpreter.common.feature.feature.group" version="1.1.0.201507032001"/>
 		<unit id="de.mdelab.sdm.interpreter.core.feature.feature.group" version="1.1.0.201507032001"/>
 		<unit id="de.uka.ipd.sdq.dialogs.feature.feature.group" version="5.1.0.202201251339"/>
@@ -245,6 +244,27 @@
 		<unit id="org.junit.source" version="4.13.2.v20211018-1956"/>
 		<unit id="org.junit.vintage.engine" version="5.8.1.v20211018-1956"/>
 		<unit id="org.junit.vintage.engine.source" version="5.8.1.v20211018-1956"/>
+	</location>
+	<!-- Dagger straight from Maven Central: the p2 update sites still ship 2.31,
+	     which does not recognise jakarta.inject annotations. The symbolic name is kept
+	     as com.google.dagger so the existing Require-Bundle entries keep resolving. -->
+	<location includeDependencyDepth="none" includeSource="false" missingManifest="generate" type="Maven">
+		<dependencies>
+			<dependency>
+				<groupId>com.google.dagger</groupId>
+				<artifactId>dagger</artifactId>
+				<version>2.60.1</version>
+				<type>jar</type>
+			</dependency>
+		</dependencies>
+		<instructions><![CDATA[
+Bundle-Name:           Dagger
+version:               ${version_cleanup;${mvnVersion}}
+Bundle-SymbolicName:   com.google.dagger
+Bundle-Version:        ${version}
+Import-Package:        *;resolution:=optional
+Export-Package:        *;version="${version}";-noimport:=true
+]]></instructions>
 	</location>
 </locations>
 </target>
