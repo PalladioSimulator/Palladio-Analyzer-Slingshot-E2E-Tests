@@ -6,8 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Automatic-Module-Name: org.palladiosimulator.analyzer.slingshot.e2e.helpers
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: org.palladiosimulator.analyzer.slingshot.e2e.helpers
-Require-Bundle: 
- de.uka.ipd.sdq.simucomframework,
+Require-Bundle: de.uka.ipd.sdq.simucomframework,
  org.palladiosimulator.analyzer.slingshot.core,
  de.uka.ipd.sdq.workflow.mdsd.blackboard,
  org.palladiosimulator.analyzer.slingshot.workflow,
@@ -21,7 +20,7 @@ Require-Bundle:
  org.palladiosimulator.spd,
  org.palladiosimulator.edp2.util,
  org.palladiosimulator.monitorrepository,
- org.junit.jupiter.api,
+ junit-jupiter-api,
  org.palladiosimulator.analyzer.slingshot.monitor,
  org.palladiosimulator.analyzer.slingshot.behavior.generalsimulationconfiguration,
  org.palladiosimulator.analyzer.slingshot.behavior.resourcesimulation,
